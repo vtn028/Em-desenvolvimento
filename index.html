@@ -1,0 +1,142 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Título 1</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Playfair+Display:ital,wght@0,500;0,600;0,700;1,400&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+
+<audio id="ambient-audio"></audio>
+
+<div class="wrapper">
+    
+    <div class="header z-index-up">
+        <div class="heart-wrapper">
+            <div class="heart-glow">❤</div>
+            <div class="heart-icon">❤</div>
+        </div>
+        <h1 id="main-title">Carregando...</h1>
+        <p id="main-subtitle">Carregando...</p>
+    </div>
+
+    <div class="main-metric z-index-up" id="sec-total-days">
+        <div class="main-metric-title" id="counter-title" style="font-size: 13px;"></div>
+        <div class="main-metric-number"><span id="total-days-val">0.000</span> <span id="counter-suffix"></span></div>
+    </div>
+
+    <div class="counter-grid z-index-up" id="sec-counter-grid">
+        <div class="counter-card">
+            <span class="counter-val" id="years-val">00</span>
+            <span class="counter-lbl">Anos</span>
+        </div>
+        <div class="counter-card">
+            <span class="counter-val" id="months-val">00</span>
+            <span class="counter-lbl">Meses</span>
+        </div>
+        <div class="counter-card">
+            <span class="counter-val" id="days-val">00</span>
+            <span class="counter-lbl">Dias</span>
+        </div>
+    </div>
+
+    <div class="live-clock-wrapper z-index-up" id="sec-live-clock">
+        <div class="clock-dot"></div>
+        <div class="live-clock" id="live-clock-val">00 : 00 : 00</div>
+    </div>
+
+    <div class="music-player z-index-up" id="sec-music-player">
+        <div class="equalizer" id="eq-widget">
+            <div class="eq-bar"></div>
+            <div class="eq-bar"></div>
+            <div class="eq-bar"></div>
+        </div>
+        <div class="album-art">🎵</div>
+        <div class="music-info">
+            <div class="music-track" id="music-track-name">Nossa Música</div>
+            <div class="music-artist" id="music-artist-name">Artista</div>
+        </div>
+        <div class="player-controls">
+            <button id="prev-btn" title="Anterior">
+                <svg viewBox="0 0 24 24"><path d="M6 6h2v12H6zm3.5 6l8.5 6V6z"/></svg>
+            </button>
+            <button id="play-pause-btn" title="Dar Play">
+                <svg id="play-icon" viewBox="0 0 24 24"><path d="M8 5v14l11-7z"/></svg>
+                <svg id="pause-icon" viewBox="0 0 24 24" style="display:none;"><path d="M6 19h4V5H6v14zm8-14v14h4V5H6v14z"/></svg>
+                <div class="loading-spinner" id="loading-spinner" style="display:none;"></div>
+            </button>
+            <button id="next-btn" title="Próxima">
+                <svg viewBox="0 0 24 24"><path d="M6 18l8.5-6L6 6v12zM16 6v12h2V6h-2z"/></svg>
+            </button>
+        </div>
+    </div>
+
+    <div class="gallery-container z-index-up" id="sec-gallery">
+        <h2 class="section-title">Título 2</h2>
+        <div class="slider-wrapper">
+            <div class="slider-dots" id="slider-dots-container"></div>
+            
+            <button class="slider-btn btn-prev" onclick="moveSlide(-1)">❮</button>
+            <button class="slider-btn btn-next" onclick="moveSlide(1)">❯</button>
+            
+            <div class="slider-track" id="slider-track">
+                </div>
+        </div>
+    </div>
+
+    <div class="interactive-card z-index-up" id="sec-love-reasons">
+        <div class="card-icon">✨</div>
+        <div class="reason-text" id="reason-display">Clique abaixo para descobrir...</div>
+        <button class="action-button" onclick="generateReason()">Surpresa do Dia</button>
+    </div>
+
+    <div class="gallery-container z-index-up" id="sec-milestones">
+        <h2 class="section-title">Título 3</h2>
+        <div class="timeline" id="timeline-container">
+            </div>
+    </div>
+
+    <div class="footer z-index-up">
+        Feito por: <span id="footer-brand-val">Victor</span>
+    </div>
+
+</div>
+
+<div class="floating-player" id="floating-player">
+    <button class="floating-player-close" id="floating-player-close" title="Fechar">✕</button>
+    <div class="equalizer" id="floating-eq-widget">
+        <div class="eq-bar"></div>
+        <div class="eq-bar"></div>
+        <div class="eq-bar"></div>
+    </div>
+    <div class="album-art">🎵</div>
+    <div class="music-info">
+        <div class="music-track" id="floating-track-name">Nossa Música</div>
+        <div class="music-artist" id="floating-artist-name">Artista</div>
+    </div>
+    <div class="player-controls">
+        <button id="floating-prev-btn" title="Anterior">
+            <svg viewBox="0 0 24 24"><path d="M6 6h2v12H6zm3.5 6l8.5 6V6z"/></svg>
+        </button>
+        <button id="floating-play-pause-btn" title="Pausar">
+            <svg id="floating-play-icon" viewBox="0 0 24 24" style="display:none;"><path d="M8 5v14l11-7z"/></svg>
+            <svg id="floating-pause-icon" viewBox="0 0 24 24"><path d="M6 19h4V5H6v14zm8-14v14h4V5H6v14z"/></svg>
+            <div class="loading-spinner" id="floating-loading-spinner" style="display:none;"></div>
+        </button>
+        <button id="floating-next-btn" title="Próxima">
+            <svg viewBox="0 0 24 24"><path d="M6 18l8.5-6L6 6v12zM16 6v12h2V6h-2z"/></svg>
+        </button>
+    </div>
+</div>
+
+<button class="floating-music-bubble" id="floating-music-bubble" title="Música" style="display:none;">🎵</button>
+
+<script src="config.js"></script>
+<script src="js/main.js"></script>
+
+</body>
+</html>
